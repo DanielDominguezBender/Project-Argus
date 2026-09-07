@@ -48,3 +48,47 @@ When a network interface reports `UP` and `LOWER_UP` but the host cannot reach i
 - firewall rules
 - IP addressing
 - routing
+
+---
+
+## Proxmox installation failures caused by unreliable USB media
+
+### Symptoms
+
+Several Proxmox installation attempts failed with different errors.
+
+Proxmox VE 9.2:
+
+`installation of package vncterm_1.9.2_amd64.deb failed`
+
+Proxmox VE 8.4:
+
+`unsquashfs ... pve-base.squashfs failed`
+
+### Investigation
+
+- ISO SHA256 verified.
+- Installation media recreated with balenaEtcher.
+- Installation media recreated with `dd`.
+- Graphical installer tested.
+- Terminal installer tested.
+- Kernel compatibility option tested.
+- Same USB device continued producing installation failures.
+
+### Root Cause
+
+Unreliable Kingston USB installation media.
+
+### Resolution
+
+A different 4 GB USB drive was used to create the Proxmox installer.
+
+Proxmox VE 8.4 installed successfully on the first attempt.
+
+### Lesson Learned
+
+When installation errors appear inconsistent or occur while extracting packages, verify not only the ISO checksum but also the physical installation media.
+
+---
+
+

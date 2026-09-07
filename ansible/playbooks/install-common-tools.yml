@@ -1,0 +1,15 @@
+---
+- name: Install common tools on Linux servers
+  hosts: linux_servers
+  become: true
+
+  tasks:
+    - name: Ensure common packages are installed
+      ansible.builtin.apt:
+        name:
+          - curl
+          - git
+          - htop
+          - tree
+        state: present
+        update_cache: true
