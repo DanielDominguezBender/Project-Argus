@@ -4,14 +4,14 @@ Project Argus is a hands-on infrastructure operations homelab built around Proxm
 The project uses a repurposed MacBook Pro as a dedicated Proxmox host and focuses on building, operating, automating and troubleshooting a small virtual infrastructure environment.
 The goal is not only to deploy services, but to understand how the different infrastructure layers interact:
 
-- physical networking
-- virtualization
-- Linux administration
-- configuration management
-- containerization
-- monitoring
-- troubleshooting
-- infrastructure reproducibility
+- physical networking<br>
+- virtualization<br>
+- Linux administration<br>
+- configuration management<br>
+- containerization<br>
+- monitoring<br>
+- troubleshooting<br>
+- infrastructure reproducibility<br>
 
 ---
 
@@ -63,13 +63,13 @@ IP addresses are assigned using DHCP reservations based on VM MAC addresses.
 
 Repurposed MacBook Pro Late 2012:
 
--Intel x86-64 CPU
--16 GB RAM
--SSD storage
--Gigabit Ethernet
--Closed-lid headless operation
--Vertical mounting
--External cooling using a Mars Gaming MNBC2 laptop cooler
+- Intel x86-64 CPU<br>
+- 16 GB RAM<br>
+- SSD storage<br>
+- Gigabit Ethernet<br>
+- Closed-lid headless operation<br>
+- Vertical mounting<br>
+- External cooling using a Mars Gaming MNBC2 laptop cooler<br>
 
 ---
 
@@ -77,37 +77,37 @@ Repurposed MacBook Pro Late 2012:
 
 ### Virtualization
 
--Proxmox VE
--KVM
--VirtIO
--Linux Bridge (vmbr0)
--LVM-thin storage
+- Proxmox VE<br>
+- KVM<br>
+- VirtIO<br>
+- Linux Bridge (vmbr0)<br>
+- LVM-thin storage<br>
 
 ### Operating Systems
 
--Debian 13
--Ubuntu Server
+- Debian 13<br>
+- Ubuntu Server<br>
 
 ### Automation
 
--Ansible Core 2.21
--SSH key authentication
--Ansible inventories
--Playbooks
--Idempotent configuration management
+- Ansible Core 2.21<br>
+- SSH key authentication<br>
+- Ansible inventories<br>
+- Playbooks<br>
+- Idempotent configuration management<br>
 
 ### Containers
 
--Docker Engine
--Docker Compose
--Docker Buildx
+- Docker Engine<br>
+- Docker Compose<br>
+- Docker Buildx<br>
 
 ### Planned Monitoring
 
--Icinga
--Prometheus
--Grafana
--Node Exporter
+- Icinga<br>
+- Prometheus<br>
+- Grafana<br>
+- Node Exporter<br>
 
 ---
 
@@ -117,17 +117,17 @@ Project Argus is designed to practice infrastructure engineering concepts in a r
 
 Key objectives include:
 
--Build and manage virtual machines using Proxmox.
--Understand virtual networking and Linux bridges.
--Manage Linux systems remotely using SSH.
--Automate system configuration using Ansible.
--Deploy Docker hosts using Infrastructure Automation.
--Validate configuration-management idempotency.
--Monitor infrastructure resources and services.
--Practice infrastructure troubleshooting.
--Automate TLS certificate deployment.
--Perform backup and disaster-recovery exercises.
--Integrate selected workloads from Project Guardian.
+- Build and manage virtual machines using Proxmox.<br>
+- Understand virtual networking and Linux bridges.<br>
+- Manage Linux systems remotely using SSH.<br>
+- Automate system configuration using Ansible.<br>
+- Deploy Docker hosts using Infrastructure Automation.<br>
+- Validate configuration-management idempotency.<br>
+- Monitor infrastructure resources and services.<br>
+- Practice infrastructure troubleshooting.<br>
+- Automate TLS certificate deployment.<br>
+- Perform backup and disaster-recovery exercises.<br>
+- Integrate selected workloads from Project Guardian.<br>
 
 ---
 
@@ -205,10 +205,10 @@ ansible linux_servers \
 
 A successful result confirms:
 
--SSH connectivity
--SSH authentication
--remote Python availability
--Ansible execution capability
+- SSH connectivity<br>
+- SSH authentication<br>
+- remote Python availability<br>
+- Ansible execution capability<br>
 
 ---
 
@@ -216,10 +216,10 @@ A successful result confirms:
 
 The first Ansible playbook standardized several common administration tools:
 
--curl
--git
--htop
--tree
+- curl<br>
+- git<br>
+- htop<br>
+- tree<br>
 
 Initial execution:
 
@@ -245,15 +245,15 @@ Docker installation on docker01 is performed using Ansible.
 
 The playbook:
 
--installs required packages
--creates the Docker keyring
--downloads the Docker signing key
--configures the Docker DEB822 repository
--installs Docker Engine
--installs Docker Compose
--installs Docker Buildx
--enables the Docker service
--adds the user to the Docker group
+- installs required packages<br>
+- creates the Docker keyring<br>
+- downloads the Docker signing key<br>
+- configures the Docker DEB822 repository<br>
+- installs Docker Engine<br>
+- installs Docker Compose<br>
+- installs Docker Buildx<br>
+- enables the Docker service<br>
+- adds the user to the Docker group<br>
 
 The deployment was validated using:
 
@@ -367,12 +367,12 @@ SSH connectivity failed after introducing DHCP reservations.
 
 Troubleshooting included:
 
--verifying SSH service status
--checking IPv4 assignment
--verifying MAC addresses
--inspecting ARP entries
--checking DHCP reservations
--inspecting NetworkManager state
+- verifying SSH service status<br>
+- checking IPv4 assignment<br>
+- verifying MAC addresses<br>
+- inspecting ARP entries<br>
+- checking DHCP reservations<br>
+- inspecting NetworkManager state<br>
 
 `linux01` had link connectivity but no valid reserved IPv4 lease.
 
@@ -488,7 +488,7 @@ Future integration will use Project Argus as a virtualization, automation and mo
 ## Status
 
 Current development stage:
--Infrastructure foundation + Ansible automation + Docker host provisioning
+- Infrastructure foundation + Ansible automation + Docker host provisioning
 
 Next milestone:
--Deploy and validate Project Guardian on `docker01`.
+- Deploy and validate Project Guardian on `docker01`.
