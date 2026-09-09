@@ -34,3 +34,6 @@
 
 - Proxmox installation failures caused by unreliable USB media
 - Proxmox network connectivity caused by incorrect physical LAN placement
+- Restored SSH connectivity after DHCP reservation changes.
+- Corrected IPv4 lease application on `linux01` by restarting the NetworkManager connection profile.
+- Enabled persistent SSH startup on `linux02`.
