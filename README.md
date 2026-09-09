@@ -156,7 +156,7 @@ SSH
 
 Example:
 
-````bash
+```bash
 ssh linux01
 ssh linux02
 ssh docker01
