@@ -1,9 +1,7 @@
 # Project Argus
 
 Project Argus is a hands-on infrastructure operations homelab built around Proxmox VE, Linux virtualization, Ansible automation, Docker and infrastructure monitoring.
-
 The project uses a repurposed MacBook Pro as a dedicated Proxmox host and focuses on building, operating, automating and troubleshooting a small virtual infrastructure environment.
-
 The goal is not only to deploy services, but to understand how the different infrastructure layers interact:
 
 - physical networking
@@ -48,11 +46,12 @@ The goal is not only to deploy services, but to understand how the different inf
 
 ## Current Infrastructure
 
-Host	Role	Operating System	IP
-pve01	Proxmox hypervisor	Proxmox VE 8.4	192.168.68.200
-linux01	Linux managed node	Debian 13	192.168.68.51
-linux02	Linux managed node	Ubuntu Server	192.168.68.52
-docker01	Docker host	Debian 13	192.168.68.53
+|Host	| Role	| Operating System	| IP|
+|-----|-------|-------------------|----|
+|pve01|	Proxmox hypervisor	| Proxmox VE 8.4	| 192.168.68.200|
+|linux01|	Linux managed node	| Debian 13	| 192.168.68.51|
+|linux02|	Linux managed node	| Ubuntu Server	| 192.168.68.52|
+|docker01|	Docker host	| Debian 13	| 192.168.68.53|
 
 IP addresses are assigned using DHCP reservations based on VM MAC addresses.
 
@@ -60,17 +59,17 @@ IP addresses are assigned using DHCP reservations based on VM MAC addresses.
 
 ## Hardware
 
-Proxmox Host
+### Proxmox Host
 
 Repurposed MacBook Pro Late 2012:
 
-Intel x86-64 CPU
-16 GB RAM
-SSD storage
-Gigabit Ethernet
-Closed-lid headless operation
-Vertical mounting
-External cooling using a Mars Gaming MNBC2 laptop cooler
+-Intel x86-64 CPU
+-16 GB RAM
+-SSD storage
+-Gigabit Ethernet
+-Closed-lid headless operation
+-Vertical mounting
+-External cooling using a Mars Gaming MNBC2 laptop cooler
 
 ---
 
@@ -78,37 +77,37 @@ External cooling using a Mars Gaming MNBC2 laptop cooler
 
 ### Virtualization
 
-Proxmox VE
-KVM
-VirtIO
-Linux Bridge (vmbr0)
-LVM-thin storage
+-Proxmox VE
+-KVM
+-VirtIO
+-Linux Bridge (vmbr0)
+-LVM-thin storage
 
 ### Operating Systems
 
-Debian 13
-Ubuntu Server
+-Debian 13
+-Ubuntu Server
 
 ### Automation
 
-Ansible Core 2.21
-SSH key authentication
-Ansible inventories
-Playbooks
-Idempotent configuration management
+-Ansible Core 2.21
+-SSH key authentication
+-Ansible inventories
+-Playbooks
+-Idempotent configuration management
 
 ### Containers
 
-Docker Engine
-Docker Compose
-Docker Buildx
+-Docker Engine
+-Docker Compose
+-Docker Buildx
 
 ### Planned Monitoring
 
-Icinga
-Prometheus
-Grafana
-Node Exporter
+-Icinga
+-Prometheus
+-Grafana
+-Node Exporter
 
 ---
 
@@ -118,17 +117,17 @@ Project Argus is designed to practice infrastructure engineering concepts in a r
 
 Key objectives include:
 
-Build and manage virtual machines using Proxmox.
-Understand virtual networking and Linux bridges.
-Manage Linux systems remotely using SSH.
-Automate system configuration using Ansible.
-Deploy Docker hosts using Infrastructure Automation.
-Validate configuration-management idempotency.
-Monitor infrastructure resources and services.
-Practice infrastructure troubleshooting.
-Automate TLS certificate deployment.
-Perform backup and disaster-recovery exercises.
-Integrate selected workloads from Project Guardian.
+-Build and manage virtual machines using Proxmox.
+-Understand virtual networking and Linux bridges.
+-Manage Linux systems remotely using SSH.
+-Automate system configuration using Ansible.
+-Deploy Docker hosts using Infrastructure Automation.
+-Validate configuration-management idempotency.
+-Monitor infrastructure resources and services.
+-Practice infrastructure troubleshooting.
+-Automate TLS certificate deployment.
+-Perform backup and disaster-recovery exercises.
+-Integrate selected workloads from Project Guardian.
 
 ---
 
@@ -143,9 +142,9 @@ Proxmox
  Host thermal baseline captured
 
 Virtual Machines
- linux01 deployed with Debian 13
- linux02 deployed with Ubuntu Server
- docker01 deployed with Debian 13
+ `linux01` deployed with Debian 13
+ `linux02` deployed with Ubuntu Server
+ `docker01` deployed with Debian 13
  QEMU Guest Agent configured
  DHCP reservations configured
 
@@ -206,10 +205,10 @@ ansible linux_servers \
 
 A successful result confirms:
 
-SSH connectivity
-SSH authentication
-remote Python availability
-Ansible execution capability
+-SSH connectivity
+-SSH authentication
+-remote Python availability
+-Ansible execution capability
 
 ---
 
@@ -246,15 +245,15 @@ Docker installation on docker01 is performed using Ansible.
 
 The playbook:
 
-installs required packages
-creates the Docker keyring
-downloads the Docker signing key
-configures the Docker DEB822 repository
-installs Docker Engine
-installs Docker Compose
-installs Docker Buildx
-enables the Docker service
-adds the user to the Docker group
+-installs required packages
+-creates the Docker keyring
+-downloads the Docker signing key
+-configures the Docker DEB822 repository
+-installs Docker Engine
+-installs Docker Compose
+-installs Docker Buildx
+-enables the Docker service
+-adds the user to the Docker group
 
 The deployment was validated using:
 
@@ -263,17 +262,11 @@ docker --version
 docker compose version
 docker run hello-world
 ```
-
-docker --version
-docker compose version
-docker run hello-world
-
 A second Ansible execution returned:
 
 ```bash
 changed=0
 ```
-
 confirming the Docker deployment playbook is idempotent.
 
 ---
@@ -307,20 +300,22 @@ The host remains reachable through Ethernet with the lid closed.
 Initial measurements were collected using lm-sensors.
 
 ### Without External Cooling
-Metric	Value
-CPU Package	~60°C
-Core 0	~60°C
-Core 1	~57°C
-Internal fan	~2000 RPM
-Battery	~34.5°C
+|Metric | Value |
+|-------|-------|
+|CPU Package |	~60°C|
+|Core 0	| ~60°C|
+|Core 1	| ~57°C|
+|Internal fan	| ~2000 RPM|
+|Battery	| ~34.5°C|
 
 ### With Mars Gaming MNBC2
-Metric	Value
-CPU Package	~58°C
-Core 0	~58°C
-Core 1	~56°C
-Internal fan	~2000 RPM
-Battery	~33.5°C
+|Metric	| Value |
+|-------|-------|
+|CPU Package |	~58°C|
+|Core 0	 |~58°C|
+|Core 1	 |~56°C|
+|Internal fan	 |~2000 RPM|
+|Battery	 |~33.5°C|
 
 The preliminary test showed a temperature reduction of approximately 1–3°C while the internal fan remained near its minimum speed.
 
@@ -372,14 +367,14 @@ SSH connectivity failed after introducing DHCP reservations.
 
 Troubleshooting included:
 
-verifying SSH service status
-checking IPv4 assignment
-verifying MAC addresses
-inspecting ARP entries
-checking DHCP reservations
-inspecting NetworkManager state
+-verifying SSH service status
+-checking IPv4 assignment
+-verifying MAC addresses
+-inspecting ARP entries
+-checking DHCP reservations
+-inspecting NetworkManager state
 
-linux01 had link connectivity but no valid reserved IPv4 lease.
+`linux01` had link connectivity but no valid reserved IPv4 lease.
 
 Resolution:
 
@@ -390,8 +385,9 @@ sudo nmcli connection up "Wired connection 1"
 
 This triggered a fresh DHCP negotiation and restored the reserved address.
 
-```text
 Repository Structure
+
+```text
 Project-Argus/
 │
 ├── README.md
@@ -426,7 +422,6 @@ Project-Argus/
 ```
 
 ---
-
 
 ## Roadmap
 
@@ -472,13 +467,13 @@ Disaster Recovery
 
 Project Argus follows a few simple rules:
 
-1.Understand before automating.
-2.Implement small changes.
-3.Validate every change.
-4.Troubleshoot methodically.
-5.Document failures as carefully as successes.
-6.Prefer reproducible infrastructure.
-7.Use automation to define desired state.
+1.Understand before automating.<br>
+2.Implement small changes.<br>
+3.Validate every change.<br>
+4.Troubleshoot methodically.<br>
+5.Document failures as carefully as successes.<br>
+6.Prefer reproducible infrastructure.<br>
+7.Use automation to define desired state.<br>
 8.Measure infrastructure behavior whenever possible.
 
 ---
@@ -493,9 +488,7 @@ Future integration will use Project Argus as a virtualization, automation and mo
 ## Status
 
 Current development stage:
-
-Infrastructure foundation + Ansible automation + Docker host provisioning
+-Infrastructure foundation + Ansible automation + Docker host provisioning
 
 Next milestone:
-
-Deploy and validate Project Guardian on `docker01`.
+-Deploy and validate Project Guardian on `docker01`.
