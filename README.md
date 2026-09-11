@@ -492,3 +492,54 @@ Current development stage:
 
 Next milestone:
 - Deploy and validate Project Guardian on `docker01`.
+
+---
+
+## Cross-Platform Stateful Recovery
+
+Project Guardian was originally deployed on a Raspberry Pi 5 using Docker and Pi-hole on ARM64.
+
+As part of Project Argus, the service was successfully redeployed and restored on a Proxmox-hosted Debian VM running on AMD64.
+
+### Recovery flow
+
+```text
+Raspberry Pi 5
+ARM64
+   │
+   │ Project Guardian
+   │ Pi-hole + persistent state
+   ▼
+Backup `/etc/pihole`
+   │
+   ▼
+Transfer persistent data
+   │
+   ▼
+Proxmox VE
+   │
+   └── docker01
+       Debian / AMD64
+           │
+           └── Docker Compose
+               └── Pi-hole
+```
+
+---
+
+## Validation
+
+The recovery process validated:
+
+Multi-architecture Docker image compatibility (arm64 and amd64)
+Clean deployment from the Git repository
+Docker Compose portability
+Persistent Pi-hole state backup and restoration
+DNS service availability on the recovered host
+Pi-hole web interface availability
+Historical Pi-hole data restoration
+Existing blocklists and configuration recovery
+
+The restored instance successfully reached Docker healthy status and answered DNS queries from the new AMD64 host.
+
+This test demonstrates that Project Guardian can be recovered on different hardware and CPU architectures while preserving application state.
