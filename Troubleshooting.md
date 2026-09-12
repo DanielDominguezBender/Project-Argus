@@ -91,7 +91,7 @@ When installation errors appear inconsistent or occur while extracting packages,
 
 ---
 
-09.09.2026
+# 09.09.2026
 
 ## SSH connectivity failure after DHCP reservation changes
 
